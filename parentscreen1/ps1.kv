@@ -1,0 +1,79 @@
+<ParentScreen1>
+  name:"parent_screen_1"
+  box_ps1:box_ps1
+  anchor_app_name:anchor_app_name
+  label_app_name:label_app_name
+  anchor_email:anchor_email
+  md_txt_field_email:md_txt_field_email
+  anchor_password:anchor_password
+  md_txt_field_password:md_txt_field_password
+  anchor_show_password:anchor_show_password
+  label_show_password:label_show_password
+  canvas.before:
+    Color:
+      rgb: [127/255,160/255,189/255]
+    Rectangle:
+      pos: self.pos
+      size: self.size
+  BoxLayout:
+    id:box_ps1
+    orientation:"vertical"
+    AnchorLayout:#App Name
+      id:anchor_app_name
+      anchor_x:"center"
+      anchor_y:"bottom"
+      # size_hint:1,None
+      # height:root.ps1_base_height *.5
+
+      Label:
+        id: label_app_name
+        text:"What Sticks"
+        size_hint:None,None
+        size:self.texture_size
+    AnchorLayout:#App Email
+      id:anchor_email
+      anchor_x:"left"
+      anchor_y:"center"
+      MDTextField:
+        id:md_txt_field_email
+        hint_text:"Email"
+        icon_right:"email"
+        icon_right_color:.2,.2,.2,1
+        current_hint_text_color:.2,.2,.2,1
+        text_color:0,0,0,1
+    AnchorLayout:#App Password
+      id:anchor_password
+      anchor_x:"left"
+      # anchor_y:"top"
+      size_hint:1,None
+      height:md_txt_field_password.height
+      MDTextField:
+        id:md_txt_field_password
+        hint_text:"Password"
+        password:True
+        icon_right_color:.2,.2,.2,1
+        current_hint_text_color:.2,.2,.2,1
+        text_color:0,0,0,1
+        # size_hint:1,None
+        # height:self.texture_size
+
+    AnchorLayout:#Show password
+      id:anchor_show_password
+      BoxLayout:
+        id:box_show_password
+        MDCheckbox:
+          id:md_checkbox_show_password
+          on_active: root.show_password(*args)
+          size_hint:.2,None
+          height:self.texture_size[1]
+        Label:
+          id: label_show_password
+          text:"Show password"
+          size_hint:.8,None
+          height:self.texture_size[1]
+    Button:
+      text:'Press Me'
+      # size_hint:1,None
+      # height:root.height *.5
+      on_press:
+        root.get_heights()
